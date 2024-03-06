@@ -18,14 +18,14 @@ This repository provides instructions and examples for handling geoshape files f
 2. Set up an Anaconda environment and install necessary packages with the command:<br> `pip install -r requirements.txt`<br>
 Refer to the [Anaconda documentation](https://docs.anaconda.com/free/anaconda/install/index.html) as needed.
 
-3. Start with the [Jupyter notebook](https://github.com/brian-cy-chang/CLAD_Geospatial/blob/main/notebooks/calculate_centroid.ipynb) that provides examples on calculating and extracting centroids from geoshape files. This also explores geoshape data types and coordinate reference systems.
-
 ## Calculating Centroids for HIFLD Geoshape Files
 
-Depending on the data structure of certain geoshape files, some adjustments may be necessary to specific functions for calculating centroids.
-* The function `full_address` parses individual address components based on column name strings for a given GeoDataFrame via a rule-based approach to generate a full address string (Street, City, State 5-digit ZIP). An additional rule may have to be written to handle additional geoshape files.
+1. Start with the [Jupyter notebook](https://github.com/brian-cy-chang/CLAD_Geospatial/blob/main/notebooks/calculate_centroid.ipynb) that provides examples on calculating and extracting centroids from geoshape files. This also explores geoshape data types and coordinate reference systems.
 
-* If you want to run a Python script, run `calculate_centroid.py` from the command line.
+2. Depending on the data structure of certain geoshape files, some adjustments may be necessary to specific functions for calculating centroids.
+    *  The function `full_address` parses individual address components based on column name strings for a given GeoDataFrame via a rule-based approach to generate a full address string (Street, City, State 5-digit ZIP). An additional rule may have to be written to handle additional geoshape files.
+
+3. If you want to run a Python script, run `calculate_centroid.py` from the command line.
 
 ```
 python calculate_centroid.py \
