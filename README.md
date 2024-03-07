@@ -33,6 +33,8 @@ python calculate_centroid.py \
     --rows <number of rows to read from data_dir> # default set to 100 rows per geoshape file
 ```
 
+4. Example output geoshape files with the extracted centroids from select HIFLD datasets are shown [here](https://github.com/brian-cy-chang/CLAD_Geospatial/tree/main/output/HIFLD/centroids).
+
 ## Using spatial join to determine rurality
 1. Start with the [Jupyter notebook](https://github.com/brian-cy-chang/CLAD_Geospatial/blob/main/notebooks/spatial_join.ipynb) that provides examples on spatial joining centroids to a Washington state tribal lands geoshape file. This also explores basic summary statistics.
 
