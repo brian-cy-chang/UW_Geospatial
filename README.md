@@ -19,7 +19,6 @@ This repository provides instructions and examples for handling geoshape files f
 Refer to the [Anaconda documentation](https://docs.anaconda.com/free/anaconda/install/index.html) as needed.
 
 ## Calculating Centroids for HIFLD Geoshape Files
-
 1. Start with the [Jupyter notebook](https://github.com/brian-cy-chang/CLAD_Geospatial/blob/main/notebooks/calculate_centroid.ipynb) that provides examples on calculating and extracting centroids from geoshape files. This also explores geoshape data types and coordinate reference systems.
 
 2. Depending on the data structure of certain geoshape files, some adjustments may be necessary to specific functions for calculating centroids.
@@ -31,5 +30,22 @@ Refer to the [Anaconda documentation](https://docs.anaconda.com/free/anaconda/in
 python calculate_centroid.py \
     --data_dir <directory of HIFLD geoshape files> \
     --output_dir <directory to save centroids geoshape files> \
-    --rows <number of rows> # default set to 100 rows per geoshape file
+    --rows <number of rows to read from data_dir> # default set to 100 rows per geoshape file
+```
+
+## Using spatial join to determine rurality
+1. Start with the [Jupyter notebook](https://github.com/brian-cy-chang/CLAD_Geospatial/blob/main/notebooks/spatial_join.ipynb) that provides examples on spatial joining centroids to a Washington state tribal lands geoshape file. This also explores basic summary statistics.
+
+2. Depending on the data structure and type of land geoshape file you are using for spatial joining, some adjustments may be necessary.
+    * The function `spatial_join` accounts for either rural or tribal geoshape files to determine if a centroid falls within a geoshape polygon designated as either rural or tribal.
+
+3. If you want to run a Python script, run `spatial_join.py` from the command line.
+
+ ```
+python spatial_join.py \
+    --data_dir <directory of HIFLD centroid geoshape files> \
+    --output_dir <directory to save spatial join geoshape files> \
+    --rows <number of rows to read from data_dir> # default set to 100 rows per geoshape file
+    --geoshape <directory of land geoshape file> \
+    --filetype <type of land data> # choose from ['tribal', 'rural', 'other']
 ```
