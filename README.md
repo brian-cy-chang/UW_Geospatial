@@ -38,7 +38,6 @@ python calculate_centroid.py \
 | Full_Address                                                              | Place_type         | source_centroid                             | source_lon    | source_lat  |
 |---------------------------------------------------------------------------|--------------------|---------------------------------------------|---------------|-------------|
 | "100 North Tryon St, Charlotte, North Carolina 28202"                     | FDIC_Insured_Banks | POINT (-72.8786479999999 41.601435)         | -72.878648    | 41.601435   |
-| "100 North Tryon St, Charlotte, North Carolina 28202"                     | FDIC_Insured_Banks | POINT (-70.25666799999991 43.6574320000001) | -70.256668    | 43.657432   |
 | "2 Elm Street, Camden, Maine 04843"                                       | FDIC_Insured_Banks | POINT (-68.4246209999999 44.5413260000001)  | -68.424621    | 44.541326   |
 
 
