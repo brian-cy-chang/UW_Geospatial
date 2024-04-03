@@ -1,6 +1,7 @@
 import os
 import sys
 import re
+import csv
 
 import numpy as np
 import pandas as pd
@@ -39,7 +40,16 @@ def full_address(df):
     elif ('STREET' not in df.columns) and ('ADDRESS' not in df.columns):
         addr_col = 'STD_ADDR_B'
 
-    df['Full_Address'] = df[[addr_col, 'CITY', state_col]].fillna('NaN').agg(', '.join, axis=1) + ' ' + df[zip_col].astype('str')
+    # add 0 to zip code if only 4 digits
+    df['zip'] = df[zip_col].astype('str')
+    df['zip'] = df['zip'].apply(lambda x: '0' + x if len(x) <5 else x)
+    
+    df[addr_col] = df[addr_col].astype('str')
+    df['CITY'] = df['CITY'].astype('str')
+    df[state_col] = df[state_col].astype('str')
+    
+    df['Full_Address'] = df[[addr_col, 'CITY', state_col]].fillna('NaN').agg(', '.join, axis=1) + ' ' + df['zip']
+    df['Full_Address'] = df['Full_Address'].astype('str')
              
     return df
 
@@ -180,6 +190,16 @@ def main():
         if name.endswith((".shp"))
     ]
 
+    # number of observations per geoshape file 
+    for file in shp_files:
+        with open(file, 'rb') as f:
+            row_count = len(f.readlines()) - 1
+            
+            basename = os.path.basename(file).split('/')[0]
+            fname = os.path.basename(basename).split('.')[0]
+            
+            print('There are {} observations in {}.'.format(row_count, fname))
+
     dict_address = dict()
     for file in shp_files:
         basename = os.path.basename(file).split("/")[0]
@@ -198,6 +218,10 @@ def main():
 
     save_shp(dict_centroid, save_dir)
 
+    gpd_concat = pd.concat([dict_centroid[fname] for fname in dict_centroid])
+    gpd_concat.to_csv(os.path.join(save_dir, "centroids_40k.csv"), index=False)
+
 
 if __name__ == "__main__":
+    main()
     print("Geoshape files with centroids saved")

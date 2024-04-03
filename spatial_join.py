@@ -199,4 +199,5 @@ def main():
     print(summary_df.to_string())
 
 if __name__ == "__main__":
+    main()
     print("Spatial join files saved")
