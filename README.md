@@ -1,5 +1,5 @@
 # CLAD Geospatial
-This repository provides instructions and examples for handling geoshape files from [Homeland Infrastructure Foundation-Level Data (HIFLD)](https://hifld-geoplatform.hub.arcgis.com/search) in Python. The goal is to extract centroid coordinates from geoshape polygons and spatial join to public US geospatial data to label as urban, rural, or tribal addresses.
+This repository provides instructions and examples for handling geoshape files from [Homeland Infrastructure Foundation-Level Data (HIFLD)](https://hifld-geoplatform.hub.arcgis.com/search) in Python. The goal is to extract centroid coordinates from geoshape polygons and create a gold standard public reference dataset to compare geocoder performance across  urban, rural, and/or tribal addresses.
 
 ## Getting Started
 1. Download geoshape files from [Homeland Infrastructure Foundation-Level Data (HIFLD)](https://hifld-geoplatform.hub.arcgis.com/search) to a local directory. Simply add more geoshape files as desired. An example directory structure is shown below.
