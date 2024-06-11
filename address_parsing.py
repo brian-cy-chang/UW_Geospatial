@@ -458,19 +458,37 @@ def custom_flag(x):
     """
     Post-hoc data quality check of parsed addresses
     """
-    if "PO" in str(x.address_1) or "P.O." in str(x.address_1):
+    # check if PO box address
+    if (
+        "PO" in str(x.address_1)
+        or "PO" in str(x.address_2)
+        or "P.O" in str(x.address_1)
+        or "P.O" in str(x.address_2)
+        or "P O" in str(x.address_1)
+        or "P O" in str(x.address_2)
+        or "PSC" in str(x.address_1)
+        or "PSC" in str(x.address_2)
+        or "PNB" in str(x.address_1)
+        or "PNB" in str(x.address_2)
+        or "PMB" in str(x.address_1)
+        or "PMB" in str(x.address_2)
+    ):
         return "FAILED DUE TO PO BOX ADDRESS"
-    if re.match("APT", x.address_1, re.IGNORECASE) or re.match(
+    # check if address_2 and address_1 are flipped
+    elif re.match("APT", x.address_1, re.IGNORECASE) or re.match(
         "SUITE", x.address_1, re.IGNORECASE
     ):
         return "FAILED DUE TO STREET ADDRESS IN LINE_1 IS FLIPPED WITH LINE_2"
+    # check if street address starts with a non-digit character
     elif not x.address_1[0].isdigit():
         return "FAILED DUE TO STREET ADDRESS STARTS WITH LETTER"
     # check address_1 only contains alphanumeric characters (spaces are ok)
     elif any(not c.isalnum() and not c.isspace() for c in x.address_1):
         return "FAILED DUE TO PRESENCE OF SPECIAL CHARACTERS"
+    # check if parsed 'state' component matches a US state or territory abbreviation
     elif len(x.state_abbr) > 2:
         return "FAILED DUE TO INCORRECT STATE FORMAT"
+    # check if any of the required address components did not parse from the full address
     elif x[["address_1", "city", "state", "zip"]].isnull().any():
         return "FAILED DUE TO INCOMPLETE PARSING"
     else:
@@ -482,10 +500,14 @@ def main():
 
     # args
     parser.add_argument("address_dir", required=True, help="path of address file (csv)")
-    parser.add_argument("address_col", required=True, help="column name of full address string")
+    parser.add_argument(
+        "address_col", required=True, help="column name of full address string"
+    )
     parser.add_argument(
         "output_dir", required=True, help="path to save parsed address file"
     )
+
+    args = parser.parse_args()
 
     address_df = pd.read_csv(args.address_dir)
     address_drop = address_df.drop_duplicates(subset=args.address_col)
