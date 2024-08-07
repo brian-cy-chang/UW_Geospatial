@@ -6,6 +6,7 @@
 4. *OMOP_sample_simulated_residential*: same addresses as in *OMOP_sample* but with simulated residental history fields generated in [simulated_residential_history](https://github.com/brian-cy-chang/CLAD_Geospatial/blob/main/notebooks/simulated_residential_history.ipynb)
 5. *nominatim_keep_columns_merge_county_parsed*: contains the full address string for Nominatim input labeled `Nominatim_address` and only contains addresses where the county matched to both a spatial join to a census 2023 TIGER/line county shapefile and merge to a ZCTA crosswalk file on `zip` generated in [nominatim_parsing](https://github.com/brian-cy-chang/CLAD_Geospatial/blob/main/notebooks/nominatim_parsing.ipynb)
 6. *omop_county_zcta_zip*: contains addresses with county names matched to both a spatial join to a census 2023 TIGER/line county shapefile and merge to a ZCTA crosswalk file on `zip` generated in [nominatim_parsing](https://github.com/brian-cy-chang/CLAD_Geospatial/blob/main/notebooks/nominatim_parsing.ipynb). Refer to column `county_match` to see which addresses did not match external validation
+7. *nominatim_sample*: randomly sampled addresses from *nominatim_keep_columns_merge_county_parsed* with 13 addresses per state
 
 ## Deprecated Files
 
