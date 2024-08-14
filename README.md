@@ -57,3 +57,13 @@ python spatial_join.py \
     --geoshape <directory of land geoshape file> \
     --filetype <type of land data> # choose from ['tribal', 'rural', 'other']
 ```
+
+## Parsing with `usaddress`
+1. Start with the [Jupyter notebook](https://github.com/brian-cy-chang/CLAD_Geospatial/blob/main/notebooks/usaddress.ipynb) that provides an example on how to parse *USPS Publication 28 Standard* address components from full string addresses.
+2. For addresses that failed parsing with the `usaddress` library, a custom parser is used.
+3. Each parsed address is then flagged based on various "issues" with the respective components.
+
+## County Name Lookup
+1. Start with the [Jupyter notebook](https://github.com/brian-cy-chang/CLAD_Geospatial/blob/main/notebooks/county_lookup.ipynb) to look at examples of how to lookup county names.
+2. Using a spatial join of the reference addresses' latitude/longitude coordinates to a [ZCTA County TIGER/Line](https://www2.census.gov/geo/tiger/TIGER2023/COUNTY/), county names are returned if there is a successful spatial join.
+3. Additional preprocessing of the addresses are also covered.
