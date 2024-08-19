@@ -1,5 +1,7 @@
 # CLAD Geospatial
-This repository provides instructions and examples for handling geoshape files from [Homeland Infrastructure Foundation-Level Data (HIFLD)](https://hifld-geoplatform.hub.arcgis.com/search) in Python. The goal is to extract centroid coordinates from geoshape polygons and create a gold standard public reference dataset to compare geocoder performance across  urban, rural, and/or tribal addresses.
+This repository provides instructions and examples for handling geoshape files from [Homeland Infrastructure Foundation-Level Data (HIFLD)](https://hifld-geoplatform.hub.arcgis.com/search) in Python. The goal is to extract centroid coordinates from geoshape polygons and create a gold standard public reference dataset to compare geocoder performance across urban, rural, and/or tribal addresses.
+
+We then parse the addresses into either [USPS Publication 28 Standard](https://pe.usps.com/text/pub28/welcome.htm) or [Nominatim](https://nominatim.org/) components to be passed to geocoders. The outputs are evaluated across several metrics. 
 
 ## Getting Started
 1. Download geoshape files from [Homeland Infrastructure Foundation-Level Data (HIFLD)](https://hifld-geoplatform.hub.arcgis.com/search) to a local directory. Simply add more geoshape files as desired. An example directory structure is shown below.
@@ -58,7 +60,7 @@ python spatial_join.py \
     --filetype <type of land data> # choose from ['tribal', 'rural', 'other']
 ```
 
-## Parsing with `usaddress`
+## Parsing with `usaddress` for USPS Publication 28 Standard
 1. Start with the [Jupyter notebook](https://github.com/brian-cy-chang/CLAD_Geospatial/blob/main/notebooks/usaddress.ipynb) that provides an example on how to parse *USPS Publication 28 Standard* address components from full string addresses.
 2. For addresses that failed parsing with the `usaddress` library, a custom parser is used.
 3. Each parsed address is then flagged based on various "issues" with the respective components.
