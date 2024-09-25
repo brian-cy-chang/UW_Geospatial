@@ -3,7 +3,6 @@ geopandas==0.14.2
 matplotlib==3.8.0
 matplotlib-inline==0.1.6
 numpy==1.26.3
-num2words==0.5.13
 openpyxl==3.0.10
 pandas==2.1.4
 pillow==10.2.0
